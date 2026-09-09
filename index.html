@@ -393,15 +393,15 @@ body.forest footer{color:#b3c2a9}
 }
 
 .project{cursor:pointer;position:relative}
-.project:after{content:"VIEW DETAILS ↗";position:absolute;right:14px;top:14px;padding:5px 8px;background:var(--paper);border:1px solid var(--ink);font-family:monospace;font-size:9px;opacity:0;transform:translateY(-4px);transition:.15s}
-.project:hover:after,.project:focus:after{opacity:1;transform:translateY(0)}
+
+
 .project:focus{outline:3px solid var(--blue);outline-offset:4px}
 .project-modal{display:none;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;padding:20px}
 .project-modal.open{display:flex}
 .modal-backdrop{position:absolute;inset:0;background:rgba(35,31,24,.62)}
 .modal-card{position:relative;width:min(680px,100%);max-height:90vh;overflow:auto;background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:7px;padding:34px;box-shadow:9px 11px 0 rgba(20,18,14,.22);transform:rotate(-.35deg)}
 .modal-close{position:absolute;right:13px;top:9px;width:34px;height:34px;border:2px solid var(--ink);background:var(--paper2);color:var(--ink);border-radius:50%;font-size:24px;line-height:25px;cursor:pointer}
-.modal-label{font-family:monospace;font-size:10px;color:var(--orange);margin-bottom:5px}.modal-card h2{font-family:"Patrick Hand","Comic Sans MS",cursive;font-size:48px;font-weight:400;line-height:1;margin-bottom:12px}.modal-card>p{color:var(--muted);font-size:15px}.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:25px}.modal-grid h3{font-family:"Patrick Hand","Comic Sans MS",cursive;font-size:24px;font-weight:400}.modal-grid p{color:var(--muted);font-size:13px;margin-top:3px}.modal-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:24px}.modal-tag{font-family:monospace;font-size:9px;padding:5px 8px;border:1px solid #c9c0ae;border-radius:3px}
+.modal-label{font-family:monospace;font-size:10px;color:var(--orange);margin-bottom:5px}.modal-card h2{font-family:"Patrick Hand","Comic Sans MS",cursive;font-size:48px;font-weight:400;line-height:1;margin-bottom:12px}.modal-card>p{color:var(--muted);font-size:15px}.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:25px}.modal-grid h3{font-family:"Patrick Hand","Comic Sans MS",cursive;font-size:24px;font-weight:400}.modal-grid p{color:var(--muted);font-size:13px;margin-top:3px}.modal-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:24px}.modal-download{margin-top:22px}.modal-download-btn{display:inline-block;text-decoration:none}.modal-tag{font-family:monospace;font-size:9px;padding:5px 8px;border:1px solid #c9c0ae;border-radius:3px}
 @media(max-width:600px){.modal-grid{grid-template-columns:1fr}.modal-card{padding:27px 22px}.modal-card h2{font-size:40px}}
 
 .project[data-project="arkanoid"] .project-media img{
@@ -1105,11 +1105,16 @@ body.forest h3 {
    only where the title is physically inside a light UI surface. */
 body.forest .panel h2,
 body.forest .panel h3,
-body.forest .project-body h3,
 body.forest .modal-card h2,
 body.forest .modal-card h3,
 body.forest .skill h3,
 body.forest .learning-box h3 {
+  color: #eef5e8 !important;
+  text-shadow: none;
+}
+
+/* Forest project cards use a light surface, so keep their headings dark. */
+body.forest .project-body h3 {
   color: #1b2d20 !important;
   text-shadow: none;
 }
@@ -2151,6 +2156,65 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
   .project-slider-btn{width:38px;height:38px;font-size:19px}
 }
 </style>
+<style>
+/* Contact section visibility fix for all themes */
+#contact,
+.contact,
+.contact-section {
+  color: var(--ink);
+}
+
+#contact h2,
+#contact h3,
+#contact p,
+#contact span,
+#contact label,
+#contact a,
+#contact .contact-title,
+#contact .contact-text,
+#contact .contact-label {
+  color: var(--ink);
+}
+
+#contact svg,
+#contact svg *,
+#contact .logo,
+#contact .logo *,
+#contact .contact-logo {
+  color: var(--ink);
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+[data-theme="forest"] #contact,
+[data-theme="forest"] .contact,
+[data-theme="forest"] .contact-section {
+  --ink: #f4f1df;
+  color: #f4f1df;
+}
+
+[data-theme="forest"] #contact h2,
+[data-theme="forest"] #contact h3,
+[data-theme="forest"] #contact p,
+[data-theme="forest"] #contact span,
+[data-theme="forest"] #contact label,
+[data-theme="forest"] #contact a,
+[data-theme="forest"] #contact .contact-title,
+[data-theme="forest"] #contact .contact-text,
+[data-theme="forest"] #contact .contact-label {
+  color: #f4f1df;
+}
+
+[data-theme="forest"] #contact svg,
+[data-theme="forest"] #contact svg *,
+[data-theme="forest"] #contact .logo,
+[data-theme="forest"] #contact .logo *,
+[data-theme="forest"] #contact .contact-logo {
+  color: #f4f1df;
+  fill: currentColor;
+  stroke: currentColor;
+}
+</style>
 </head>
 
 <div class="game-animation" aria-hidden="true">
@@ -2262,7 +2326,7 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
     <button class="project-slider-btn project-prev" type="button" aria-label="Previous projects">←</button>
 
     <div class="projects project-slider" id="projectSlider">
-      <article class="panel project" data-project="unity-platformer">
+      <article class="panel project">
         <div class="project-media">
           <video controls preload="metadata">
             <source src="videos/unity-platformer.mp4" type="video/mp4">
@@ -2276,7 +2340,7 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
         </div>
       </article>
 
-      <article class="panel project" data-project="pingpong">
+      <article class="panel project">
         <div class="project-media">
           <img src="images/pingpong.png" alt="Ping Pong project">
         </div>
@@ -2288,7 +2352,7 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
         </div>
       </article>
 
-      <article class="panel project" data-project="supercar">
+      <article class="panel project">
         <div class="project-media">
           <img src="images/supercar.png" alt="Super Car project">
         </div>
@@ -2300,7 +2364,7 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
         </div>
       </article>
 
-      <article class="panel project" data-project="arkanoid">
+      <article class="panel project">
         <div class="project-media">
           <img src="images/arkanoid.png" alt="Arkanoid project">
         </div>
@@ -2312,7 +2376,7 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
         </div>
       </article>
 
-      <article class="panel project" data-project="chess">
+      <article class="panel project">
         <div class="project-media">
           <video controls preload="metadata">
             <source src="videos/chess.mp4" type="video/mp4">
@@ -2367,9 +2431,14 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
     </div>
   </div>
 </section>
+<script>
+document.querySelectorAll(".project").forEach(card=>{
+  card.addEventListener("click",()=>{window.location.href="projects.html";});
+  card.style.cursor="pointer";
+});
+</script>
 </main>
 
-<div class="project-modal" id="projectModal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" aria-label="Close project details" data-close-modal>×</button><div class="modal-label" id="modalMeta"></div><h2 id="modalTitle"></h2><p id="modalDescription"></p><div class="modal-grid"><div><h3>What I built</h3><p id="modalBuilt"></p></div><div><h3>What I learned</h3><p id="modalLearned"></p></div></div><div class="modal-tags" id="modalTags"></div></div></div>
 <button class="scroll-top" aria-label="Back to top">↑</button>
 
 <div class="template" aria-label="Choose style">
@@ -2381,19 +2450,6 @@ body.gaming .project-media-fallback{background:#a9bd72;color:#14220f;box-shadow:
 <footer class="container"><span>PRATIK PARAJULI / GAME DEV</span></footer>
 
 <script>
-const projectData={
-"unity-platformer":{title:"Unity 2D Platformer",meta:"FINISHED / UNITY + C#",description:"A 2D platformer built while following FreeCodeCamp's Unity game development tutorial. The assets used in the tutorial were provided by FreeCodeCamp.",built:"Player movement, 2D physics, collisions, animations, enemies, camera setup, UI, and scene-based game development.",learned:"How Unity GameObjects, Components, physics, animations, and gameplay systems fit together in a complete 2D project.",tags:["UNITY","C#","2D","TUTORIAL"]},
-pingpong:{title:"Ping Pong",meta:"FINISHED / C++ + SFML",description:"A simple 2-player Pong game focused on getting the basics of game programming working from scratch.",built:"Player and paddle movement, ball movement, collision detection, scoring, and a Player 1 / Player 2 scoreboard.",learned:"Game loops, keyboard input, collision logic, keeping score, and organizing a small game into manageable pieces.",tags:["C++","SFML","2 PLAYER","COLLISION"]},
-supercar:{title:"Super Car",meta:"IN PROGRESS / C++ + SFML",description:"A top-down traffic dodging game where the goal is to survive as long as possible while the score keeps increasing.",built:"Player car controls, traffic vehicles, spawning, movement, collision detection, scoring, and game-over logic.",learned:"Working with game states, lists of objects, random spawning, collision handling, and gradually increasing difficulty.",tags:["C++","SFML","ARCADE","TRAFFIC"]},
-arkanoid:{title:"Arkanoid",meta:"IN PROGRESS / C++ + SFML",description:"A classic brick-breaker made to practice 2D physics and game logic.",built:"Paddle controls, bouncing ball, brick collision, score tracking, lives, and the basic game loop.",learned:"2D movement, collision responses, arrays/collections of bricks, and handling multiple game objects.",tags:["C++","SFML","PHYSICS","BRICK BREAKER"]},
-chess:{title:"Chess",meta:"IN PROGRESS / C++ + SFML",description:"A chess project focused on translating the rules of chess into working program logic.",built:"Board representation, piece movement, legal move highlighting, turn tracking, and special moves such as castling.",learned:"Breaking a complicated ruleset into functions, validating moves, managing game state, and writing cleaner logic.",tags:["C++","SFML","LOGIC","BOARD GAME"]}
-};
-const projectModal=document.getElementById("projectModal");
-function openProject(id){const p=projectData[id];if(!p)return;document.getElementById("modalTitle").textContent=p.title;document.getElementById("modalMeta").textContent=p.meta;document.getElementById("modalDescription").textContent=p.description;document.getElementById("modalBuilt").textContent=p.built;document.getElementById("modalLearned").textContent=p.learned;document.getElementById("modalTags").innerHTML=p.tags.map(t=>`<span class="modal-tag">${t}</span>`).join("");projectModal.classList.add("open");projectModal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}
-function closeProject(){projectModal.classList.remove("open");projectModal.setAttribute("aria-hidden","true");document.body.style.overflow="";}
-document.querySelectorAll(".project[data-project]").forEach(card=>{card.addEventListener("click",()=>openProject(card.dataset.project));card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openProject(card.dataset.project);}})});
-document.querySelectorAll("[data-close-modal]").forEach(el=>el.addEventListener("click",closeProject));document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProject();});
-
 // Scroll-in reveal animations
 const revealEls=document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
@@ -2536,3 +2592,108 @@ if(saved){
 </script>
 </body>
 </html>
+<style>
+
+/* FINAL FOREST CONTACT VISIBILITY FIX */
+body.forest #contact .contact-actions .btn:not(.primary) {
+  background: #142319 !important;
+  color: #eef7ec !important;
+  border-color: #5d8060 !important;
+  text-shadow: none !important;
+}
+
+body.forest #contact .contact-actions .btn:not(.primary) svg {
+  color: #eef7ec !important;
+  fill: #eef7ec !important;
+  stroke: #eef7ec !important;
+  opacity: 1 !important;
+}
+
+body.forest #contact .contact-actions .btn:not(.primary) svg * {
+  fill: #eef7ec !important;
+  stroke: #eef7ec !important;
+}
+
+body.forest #contact .contact-actions .btn:not(.primary):hover {
+  background: #1d3426 !important;
+  color: #ffffff !important;
+}
+
+body.forest #contact .contact-actions .btn:not(.primary):hover svg,
+body.forest #contact .contact-actions .btn:not(.primary):hover svg * {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Keep the Contact heading and paragraph readable in Forest. */
+body.forest #contact .contact > div:first-child .label {
+  color: #dcebd5 !important;
+}
+
+body.forest #contact .contact > div:first-child h2 {
+  color: #eef7ec !important;
+}
+
+body.forest #contact .contact > div:first-child p {
+  color: #c0d2bd !important;
+}
+
+</style>
+
+<style>
+/* FINAL FOREST TEXT CONTRAST FIX — font colors only */
+/* Text directly over the dark Forest scenery */
+body.forest .section-top p {
+  color: #eef5e8 !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,.35);
+}
+
+/* Contact sits on a light panel, so use dark text there */
+body.forest #contact .contact > div:first-child .label {
+  color: #397657 !important;
+}
+body.forest #contact .contact > div:first-child h2 {
+  color: #1b2d20 !important;
+  text-shadow: none !important;
+}
+body.forest #contact .contact > div:first-child p {
+  color: #526b59 !important;
+  text-shadow: none !important;
+}
+</style>
+
+
+<style>
+/* Forest theme: make the Projects button text visible */
+body.forest #projects .project-section-intro .btn {
+  color: #eef7ec !important;
+}
+/* Full-width dotted footer divider */
+footer{
+  position:relative;
+  border-top:0 !important;
+}
+footer::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:100vw;
+  height:0;
+  border-top:2px dashed #cfc6b6;
+  transform:translateX(-50%);
+  pointer-events:none;
+  box-sizing:border-box;
+}
+body.gaming footer::before{
+  border-top-color:#8fba67;
+}
+body.neon footer::before{
+  border-top-color:#354747;
+}
+body.forest footer::before{
+  border-top-color:#cfc6b6;
+}
+
+</style>
